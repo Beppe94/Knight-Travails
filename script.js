@@ -71,30 +71,3 @@ function knightTravails(start, target, chessboardSize) {
     return reconstructPath(start.join(), target.join(), parent);
 }
 
-//returns true or false after checking if the position is valid
-//given x,y position and the board size
-function isValidPosition(x, y, chessboardSize) {
-    return x >= 0 && y >= 0 && x < chessboardSize && y < chessboardSize;
-}
-
-function reconstructPath(start, target, parent) {
-
-    const path = [];
-    let current = target.split(',').map(Number);
-  
-    while (current.join() !== start) {
-      path.push(current);
-      current = parent.get(current.join()).split(',').map(Number);
-    }
-    console.log(current);
-
-    path.push(current);
-    return path.reverse();
-}
-
-// Example usage:
-const start = [0, 0];
-const target = [7, 7];
-const chessboardSize = 8;
-const shortestPath = knightTravails(start, target, chessboardSize);
-console.log(shortestPath);
